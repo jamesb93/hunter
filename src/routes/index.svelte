@@ -34,10 +34,16 @@ const filesystem = {
 // User has the terminal open
 // User finds out that someone ran a program which did something catastrophic
 // Contact list
+// ASCII art style output
+// config file?
+// text editing inside the faketerm
+// Would require another buffer entirely, which could be a component that gets rendered inside the window
+// maybe more esoteric names, where is this terminal from?
 
 // All commands return an array of strings as the output
 // As well, they can modify the state of the terminal
 // Eventually commands can be a bit more expansive
+
 const cmds = {
 	ls : () => files.filter(f => !f.startsWith('.')), // list non-hidden files
 	la: () => files, // list files including hidden
@@ -46,6 +52,8 @@ const cmds = {
 	mkdir: () => {}, // make directory
 	femto: () => {}, // text editor
 	cd: () => {}, // change directory
+	fzf: () => {}, // search
+	help: () => Object.keys(cmds)
 }
 
 function evaluate(cmd) {
@@ -94,7 +102,7 @@ function keyup(e) {
 }
 
 function inputHandler(e) {
-	inputText = input.innerText;
+	inputText = input.innerText.trim()
 }
 
 </script>
